@@ -4,6 +4,8 @@ Public static web demo for a weather-aware campaign planning product.
 
 The site is designed to be deployed directly from the repository root with GitHub Pages.
 
+Ownership: Intellectual property by Seth Ye, Northwestern University.
+
 Current product story:
 
 - Scenario-led bubble tea and beverage operator use cases

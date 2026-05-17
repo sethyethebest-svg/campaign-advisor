@@ -1139,6 +1139,31 @@ html[lang="zh-Hans"] .hero-copy h2 {
   background: rgba(191, 120, 31, 0.15);
 }
 
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--graphite);
+}
+
+.site-footer p,
+.site-footer span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 820;
+}
+
+.site-footer strong {
+  margin-right: auto;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 920;
+}
+
 @media (max-width: 1080px) {
   .hero-section,
   .workspace-grid,
@@ -1258,5 +1283,15 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
   .pipeline-list {
     grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .site-footer strong {
+    margin-right: 0;
   }
 }
