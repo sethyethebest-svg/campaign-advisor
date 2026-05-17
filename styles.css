@@ -784,6 +784,27 @@ html[lang="zh-Hans"] .hero-copy h2 {
   margin-bottom: 0;
 }
 
+.evidence-section .section-intro {
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.evidence-section .section-intro h2,
+.evidence-section .section-intro p:not(.eyebrow) {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.evidence-section .section-intro h2 {
+  max-width: 980px;
+  font-size: clamp(36px, 4.8vw, 62px);
+  line-height: 1.02;
+}
+
+.evidence-section .section-intro p:not(.eyebrow) {
+  max-width: 760px;
+}
+
 .proof-grid {
   display: grid;
   grid-template-columns: minmax(330px, 0.74fr) minmax(0, 1.26fr);
@@ -817,7 +838,8 @@ html[lang="zh-Hans"] .hero-copy h2 {
 .pipeline-list li {
   display: grid;
   grid-template-columns: 28px minmax(0, 1fr);
-  gap: 12px;
+  column-gap: 12px;
+  row-gap: 4px;
   padding: 16px 0;
   border-top: 1px solid var(--line);
 }
@@ -834,6 +856,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
   color: var(--paper);
   font-size: 12px;
   font-weight: 900;
+  grid-row: 1 / span 2;
 }
 
 .pipeline-list {
@@ -842,6 +865,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
 .pipeline-list strong {
   display: block;
+  grid-column: 2;
   color: var(--ink);
   font-size: 14px;
   font-weight: 900;
@@ -849,7 +873,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
 .pipeline-list span {
   display: block;
-  margin-top: 4px;
+  grid-column: 2;
   color: var(--muted);
   font-size: 13px;
   font-weight: 650;
