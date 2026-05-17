@@ -807,8 +807,8 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
 .proof-grid {
   display: grid;
-  grid-template-columns: minmax(330px, 0.74fr) minmax(0, 1.26fr);
-  gap: 46px;
+  grid-template-columns: 1fr;
+  gap: 34px;
   align-items: start;
 }
 
@@ -829,7 +829,8 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
 .pipeline-list {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
   margin: 18px 0 0;
   padding: 0;
   list-style: none;
@@ -840,8 +841,12 @@ html[lang="zh-Hans"] .hero-copy h2 {
   grid-template-columns: 28px minmax(0, 1fr);
   column-gap: 12px;
   row-gap: 4px;
-  padding: 16px 0;
-  border-top: 1px solid var(--line);
+  min-height: 128px;
+  align-content: start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.54);
 }
 
 .pipeline-list li::before {
@@ -1159,6 +1164,10 @@ html[lang="zh-Hans"] .hero-copy h2 {
     grid-template-columns: 1fr;
   }
 
+  .pipeline-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .section-intro .eyebrow,
   .section-intro h2,
   .section-intro p:not(.eyebrow) {
@@ -1245,5 +1254,9 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
   .scroll-section {
     padding-top: 54px;
+  }
+
+  .pipeline-list {
+    grid-template-columns: 1fr;
   }
 }
