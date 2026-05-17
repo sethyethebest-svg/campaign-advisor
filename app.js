@@ -128,6 +128,8 @@ const copy = {
     runnerUp: "Runner up",
     weatherEffect: "Avg weather effect",
     highDemandDays: "High demand days",
+    decisionPreviewLabel: "Daily top campaign preview",
+    decisionPreviewHint: "Top choice by selected target",
     demandPrefix: "Demand",
     demandSeparator: ":",
     dailyEyebrow: "Daily plan",
@@ -300,6 +302,8 @@ const copy = {
     runnerUp: "第二选择",
     weatherEffect: "平均天气影响",
     highDemandDays: "高需求天气天数",
+    decisionPreviewLabel: "每日首选预览",
+    decisionPreviewHint: "按当前目标排序的第一选择",
     demandPrefix: "需求",
     demandSeparator: "：",
     dailyEyebrow: "每日计划",
@@ -429,6 +433,7 @@ const elements = {
   weeklyTopTwo: document.querySelector("#weekly-top-two"),
   weatherEffect: document.querySelector("#weather-effect"),
   highDemandDays: document.querySelector("#high-demand-days"),
+  decisionPreviewGrid: document.querySelector("#decision-preview-grid"),
   dailyGrid: document.querySelector("#daily-grid"),
   modelFormula: document.querySelector("#model-formula"),
   campaignCoefficients: document.querySelector("#campaign-coefficients"),
@@ -893,6 +898,23 @@ function renderWeeklySummary() {
 
   elements.weeklyTopTwo.innerHTML = topTwo
     .map((prediction, index) => renderRankRow(prediction, index, metricKey))
+    .join("");
+
+  renderDecisionPreview(metricKey);
+}
+
+function renderDecisionPreview(metricKey) {
+  elements.decisionPreviewGrid.innerHTML = state.forecast
+    .map((day) => {
+      const topCampaign = rankCampaignsForDay(day)[0];
+      return `
+        <article class="preview-day-card">
+          <span>${text().days[day.dayKey]}</span>
+          <strong>${campaignText(topCampaign.key).name}</strong>
+          <em>${formatMetric(topCampaign[metricKey], state.selectedMetric)}</em>
+        </article>
+      `;
+    })
     .join("");
 }
 

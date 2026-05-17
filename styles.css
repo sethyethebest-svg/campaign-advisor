@@ -532,7 +532,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
 }
 
 .forecast-row {
-  align-items: center;
+  align-items: end;
   gap: 8px;
   min-height: 70px;
   padding: 8px 0;
@@ -546,6 +546,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
 .day-chip {
   display: flex;
   align-items: center;
+  align-self: center;
   min-width: 0;
   font-weight: 900;
 }
@@ -608,6 +609,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
 }
 
 .demand-badge {
+  align-self: center;
   justify-self: end;
   padding: 6px 8px;
   border-radius: 8px;
@@ -832,6 +834,77 @@ html[lang="zh-Hans"] .hero-copy h2 {
   margin-top: 4px;
   color: var(--ink);
   font-size: 18px;
+}
+
+.decision-daily-preview {
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.decision-preview-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.decision-preview-header span {
+  color: var(--graphite);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.decision-preview-header small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.decision-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.preview-day-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 10px;
+}
+
+.preview-day-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 920;
+}
+
+.preview-day-card strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-day-card em {
+  color: var(--blue);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 950;
 }
 
 .scroll-section {
@@ -1326,8 +1399,19 @@ html[lang="zh-Hans"] .hero-copy h2 {
   }
 
   .value-row,
-  .insight-grid {
+  .insight-grid,
+  .decision-preview-grid {
     grid-template-columns: 1fr;
+  }
+
+  .decision-preview-header {
+    align-items: start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .decision-preview-header small {
+    text-align: left;
   }
 
   .forecast-row {

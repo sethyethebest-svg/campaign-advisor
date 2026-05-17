@@ -9,7 +9,7 @@
       content="A weather-aware campaign planning web demo for bubble tea and beverage operators, with live forecast inputs and explainable P-ROAS/CAC ranking."
     >
     <link rel="preload" as="image" href="assets/hero-bubble-tea-storefront.jpg">
-    <link rel="stylesheet" href="styles.css?v=20260517-clarity1">
+    <link rel="stylesheet" href="styles.css?v=20260517-layout1">
   </head>
   <body>
     <div class="page-shell">
@@ -176,6 +176,14 @@
                       <strong id="high-demand-days">0</strong>
                     </div>
                   </div>
+
+                  <div class="decision-daily-preview" aria-label="Daily top campaign preview">
+                    <div class="decision-preview-header">
+                      <span data-i18n="decisionPreviewLabel">Daily top campaign preview</span>
+                      <small data-i18n="decisionPreviewHint">Top choice by selected target</small>
+                    </div>
+                    <div class="decision-preview-grid" id="decision-preview-grid"></div>
+                  </div>
                 </div>
               </section>
             </div>
@@ -322,6 +330,6 @@
       </main>
     </div>
 
-    <script src="app.js?v=20260517-clarity1"></script>
+    <script src="app.js?v=20260517-layout1"></script>
   </body>
 </html>
