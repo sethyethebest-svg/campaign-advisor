@@ -10,6 +10,7 @@ Current product story:
 
 - Scenario-led bubble tea and beverage operator use cases
 - Live local weather forecast demo with P-ROAS/CAC ranking
+- Browser Geolocation API for coordinates, BigDataCloud reverse geocoding for city names, and Open-Meteo daily min/mean/max weather
 - Transparent additive model and data-source explanation
 - U.S. bubble tea benchmark sample for pilot context
 - Future iOS store companion teaser

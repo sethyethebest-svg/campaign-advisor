@@ -1,6 +1,7 @@
 const basePROAS = 4.5;
 const baseCAC = 7.0;
 const temperatureReferenceC = 20;
+const demoTemperatureRangeC = 4;
 
 const weatherCoefficients = {
   temperatureC: { proas: -0.3, cac: 0.12 },
@@ -127,7 +128,7 @@ const copy = {
       "The demo uses transparent sample coefficients. In production, the same interface would learn from store-day campaign history, ad spend, POS orders, and local weather.",
     pipelineTitle: "Data pipeline",
     pipelineWeatherTitle: "Weather forecast",
-    pipelineWeatherText: "Browser location plus Open-Meteo 7-day forecast.",
+    pipelineWeatherText: "Browser location, BigDataCloud city lookup, and Open-Meteo 7-day forecast.",
     pipelineBusinessTitle: "Business outcomes",
     pipelineBusinessText: "Store-day P-ROAS, CAC, orders, and campaign spend.",
     pipelineModelTitle: "Transparent model",
@@ -155,14 +156,16 @@ const copy = {
     campaignEffects: "Campaign effects",
     weatherEffects: "Weather effects",
     continuousInputs: "Continuous inputs",
-    tempLabelF: "Temp °F",
-    tempLabelC: "Temp °C",
+    avgTempLabelF: "Avg °F",
+    avgTempLabelC: "Avg °C",
+    lowLabel: "Low",
+    highLabel: "High",
     rainLabel: "Rain %",
     windLabel: "Wind mph",
     statusScenario: "{scenario} scenario loaded. Use location for live weather.",
     statusManual: "Manual forecast edited. Rankings recalculated.",
     statusRequesting: "Requesting browser location for live weather...",
-    statusLive: "Live forecast loaded for {coordinate}.",
+    statusLive: "Live forecast loaded for {place}.",
     statusNoGeo: "This browser does not support location. Demo forecast remains loaded.",
     statusDenied: "Location permission was denied. Demo forecast remains loaded.",
     statusUnavailable: "Current location was unavailable. Demo forecast remains loaded.",
@@ -171,13 +174,13 @@ const copy = {
     metricPROASContext: "Ranking by expected P-ROAS.",
     metricCACContext: "Ranking by expected CAC.",
     factors: {
-      temperature: "Temperature",
+      temperature: "Average temperature",
       rain: "Rain probability",
       wind: "Wind speed"
     },
     factorUnits: {
-      temperatureF: "per +1°F vs 68°F",
-      temperatureC: "per +1°C vs 20°C",
+      temperatureF: "per +1°F avg vs 68°F",
+      temperatureC: "per +1°C avg vs 20°C",
       rain: "per +1 percentage point",
       wind: "per +1 mph"
     },
@@ -286,7 +289,7 @@ const copy = {
       "当前演示使用透明的样例系数。生产环境中，同一界面可以学习门店日级投放历史、广告花费、POS 订单和本地天气。",
     pipelineTitle: "数据链路",
     pipelineWeatherTitle: "天气预测",
-    pipelineWeatherText: "浏览器定位 + Open-Meteo 未来 7 天天气。",
+    pipelineWeatherText: "浏览器定位 + BigDataCloud 地名解析 + Open-Meteo 未来 7 天天气。",
     pipelineBusinessTitle: "业务结果",
     pipelineBusinessText: "门店日级 P-ROAS、CAC、订单和广告花费。",
     pipelineModelTitle: "透明模型",
@@ -314,14 +317,16 @@ const copy = {
     campaignEffects: "投放方案效应",
     weatherEffects: "天气效应",
     continuousInputs: "连续变量",
-    tempLabelF: "温度 °F",
-    tempLabelC: "温度 °C",
+    avgTempLabelF: "平均 °F",
+    avgTempLabelC: "平均 °C",
+    lowLabel: "最低",
+    highLabel: "最高",
     rainLabel: "降雨概率 %",
     windLabel: "风速 mph",
     statusScenario: "{scenario} 场景已加载。点击当前位置可获取真实天气。",
     statusManual: "已手动编辑天气，排名已重新计算。",
     statusRequesting: "正在请求浏览器定位以获取实时天气...",
-    statusLive: "已加载 {coordinate} 的实时天气。",
+    statusLive: "已加载 {place} 的实时天气。",
     statusNoGeo: "当前浏览器不支持定位，继续使用 demo 天气。",
     statusDenied: "定位权限被拒绝，继续使用 demo 天气。",
     statusUnavailable: "无法获取当前位置，继续使用 demo 天气。",
@@ -330,13 +335,13 @@ const copy = {
     metricPROASContext: "按预期 P-ROAS 排名。",
     metricCACContext: "按预期 CAC 排名。",
     factors: {
-      temperature: "温度",
+      temperature: "平均温度",
       rain: "降雨概率",
       wind: "风速"
     },
     factorUnits: {
-      temperatureF: "每 +1°F，相对 68°F",
-      temperatureC: "每 +1°C，相对 20°C",
+      temperatureF: "平均每 +1°F，相对 68°F",
+      temperatureC: "平均每 +1°C，相对 20°C",
       rain: "每 +1 个百分点",
       wind: "每 +1 mph"
     },
@@ -413,7 +418,7 @@ function text() {
 }
 
 function cloneScenario(name) {
-  return scenarios[name].map((day) => ({ ...day }));
+  return scenarios[name].map(normalizeForecastDay);
 }
 
 function celsiusToFahrenheit(value) {
@@ -430,6 +435,24 @@ function displayedTemperature(valueC) {
 
 function inputTemperatureToC(value) {
   return state.temperatureUnit === "f" ? fahrenheitToCelsius(value) : value;
+}
+
+function normalizeForecastDay(day) {
+  const temperatureC = Number(day.temperatureC);
+  const fallbackAverage = Number.isFinite(temperatureC) ? temperatureC : 20;
+  const temperatureMinC = Number.isFinite(Number(day.temperatureMinC))
+    ? Number(day.temperatureMinC)
+    : fallbackAverage - demoTemperatureRangeC;
+  const temperatureMaxC = Number.isFinite(Number(day.temperatureMaxC))
+    ? Number(day.temperatureMaxC)
+    : fallbackAverage + demoTemperatureRangeC;
+
+  return {
+    ...day,
+    temperatureC: fallbackAverage,
+    temperatureMinC,
+    temperatureMaxC
+  };
 }
 
 function formatInputNumber(value) {
@@ -558,8 +581,8 @@ function updateActiveControls() {
 
 function renderLocation() {
   if (state.source.kind === "live") {
-    elements.locationLabel.textContent = text().liveLocation;
-    elements.locationDetail.textContent = `${state.source.coordinate}${state.source.accuracy ? ` • ${state.source.accuracy}` : ""} • ${state.source.timezone}`;
+    elements.locationLabel.textContent = localizedLivePlace();
+    elements.locationDetail.textContent = liveLocationDetail();
     return;
   }
 
@@ -584,7 +607,8 @@ function renderStatus() {
   }
 
   if (state.status.kind === "live") {
-    elements.forecastStatus.textContent = text().statusLive.replace("{coordinate}", state.status.coordinate);
+    const place = state.source.kind === "live" ? localizedLivePlace() : state.status.place || state.status.coordinate;
+    elements.forecastStatus.textContent = text().statusLive.replace("{place}", place);
     return;
   }
 
@@ -606,7 +630,7 @@ function buildOpenMeteoUrl(latitude, longitude) {
   url.search = new URLSearchParams({
     latitude,
     longitude,
-    daily: "temperature_2m_max,precipitation_probability_max,wind_speed_10m_max",
+    daily: "temperature_2m_max,temperature_2m_min,temperature_2m_mean,precipitation_probability_max,wind_speed_10m_max",
     temperature_unit: "celsius",
     wind_speed_unit: "mph",
     forecast_days: "7",
@@ -627,12 +651,63 @@ function mapOpenMeteoForecast(data) {
     throw new Error("Open-Meteo response did not include daily forecast data.");
   }
 
-  return daily.time.slice(0, 7).map((date, index) => ({
-    dayKey: dayKeys[new Date(`${date}T00:00:00`).getDay()],
-    temperatureC: roundWeatherValue(daily.temperature_2m_max?.[index]),
-    rain: roundWeatherValue(daily.precipitation_probability_max?.[index]),
-    windMph: roundWeatherValue(daily.wind_speed_10m_max?.[index])
-  }));
+  return daily.time.slice(0, 7).map((date, index) => {
+    const temperatureMinC = roundWeatherValue(daily.temperature_2m_min?.[index]);
+    const temperatureMaxC = roundWeatherValue(daily.temperature_2m_max?.[index]);
+    const meanTemperature = Number(daily.temperature_2m_mean?.[index]);
+    const temperatureC = Number.isFinite(meanTemperature)
+      ? Math.round(meanTemperature)
+      : Math.round((temperatureMinC + temperatureMaxC) / 2);
+
+    return {
+      dayKey: dayKeys[new Date(`${date}T00:00:00`).getDay()],
+      temperatureC,
+      temperatureMinC,
+      temperatureMaxC,
+      rain: roundWeatherValue(daily.precipitation_probability_max?.[index]),
+      windMph: roundWeatherValue(daily.wind_speed_10m_max?.[index])
+    };
+  });
+}
+
+function buildReverseGeocodeUrl(latitude, longitude, language) {
+  const url = new URL("https://api.bigdatacloud.net/data/reverse-geocode-client");
+  url.search = new URLSearchParams({
+    latitude,
+    longitude,
+    localityLanguage: language
+  });
+  return url;
+}
+
+function formatPlaceName(data, language) {
+  const parts = [
+    data.city || data.locality,
+    data.principalSubdivision,
+    data.countryName
+  ].filter(Boolean);
+  return [...new Set(parts)].join(language === "zh" ? "，" : ", ");
+}
+
+async function fetchPlaceName(latitude, longitude, language) {
+  try {
+    const response = await fetch(buildReverseGeocodeUrl(latitude, longitude, language));
+    if (!response.ok) {
+      return "";
+    }
+    const data = await response.json();
+    return formatPlaceName(data, language);
+  } catch {
+    return "";
+  }
+}
+
+async function resolvePlaceNames(latitude, longitude) {
+  const [en, zh] = await Promise.all([
+    fetchPlaceName(latitude, longitude, "en"),
+    fetchPlaceName(latitude, longitude, "zh")
+  ]);
+  return { en, zh };
 }
 
 function locationErrorKey(error) {
@@ -673,22 +748,24 @@ async function loadLiveForecast() {
   try {
     const position = await getCurrentPosition();
     const { latitude, longitude, accuracy } = position.coords;
-    const response = await fetch(buildOpenMeteoUrl(latitude, longitude));
-
-    if (!response.ok) {
-      throw new Error(`Open-Meteo returned ${response.status}.`);
-    }
-
-    const data = await response.json();
+    const weatherPromise = fetch(buildOpenMeteoUrl(latitude, longitude)).then((response) => {
+      if (!response.ok) {
+        throw new Error(`Open-Meteo returned ${response.status}.`);
+      }
+      return response.json();
+    });
+    const placePromise = resolvePlaceNames(latitude, longitude);
+    const [data, placeNames] = await Promise.all([weatherPromise, placePromise]);
     const coordinate = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
     state.forecast = mapOpenMeteoForecast(data);
     state.source = {
       kind: "live",
       coordinate,
       accuracy: Number.isFinite(accuracy) ? `±${Math.round(accuracy)}m` : "",
-      timezone: data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "local timezone"
+      timezone: data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "local timezone",
+      placeNames
     };
-    state.status = { kind: "live", coordinate, tone: "success" };
+    state.status = { kind: "live", coordinate, place: localizedLivePlace(), tone: "success" };
     renderAll();
   } catch (error) {
     state.status = { kind: "error", errorKey: locationErrorKey(error), tone: "error" };
@@ -699,8 +776,21 @@ async function loadLiveForecast() {
   }
 }
 
-function temperatureLabel() {
-  return state.temperatureUnit === "f" ? text().tempLabelF : text().tempLabelC;
+function localizedLivePlace() {
+  const placeNames = state.source.placeNames || {};
+  return placeNames[state.language] || placeNames.en || placeNames.zh || state.source.coordinate || text().liveLocation;
+}
+
+function liveLocationDetail() {
+  return [state.source.coordinate, state.source.accuracy, state.source.timezone].filter(Boolean).join(" • ");
+}
+
+function averageTemperatureLabel() {
+  return state.temperatureUnit === "f" ? text().avgTempLabelF : text().avgTempLabelC;
+}
+
+function formatDisplayTemperature(valueC) {
+  return `${formatInputNumber(displayedTemperature(valueC))}°${state.temperatureUnit.toUpperCase()}`;
 }
 
 function renderForecastTable() {
@@ -713,7 +803,7 @@ function renderForecastTable() {
             <span class="weather-icon" aria-hidden="true">${demand.icon}</span>
             <span>${text().days[day.dayKey]}</span>
           </div>
-          ${renderNumberInput(index, "temperature", temperatureLabel(), formatInputNumber(displayedTemperature(day.temperatureC)), -40, 120)}
+          ${renderTemperatureInput(index, day)}
           ${renderNumberInput(index, "rain", text().rainLabel, day.rain, 0, 100)}
           ${renderNumberInput(index, "wind", text().windLabel, day.windMph, 0, 60)}
           <span class="demand-badge ${demand.className}">${text().demand[demand.key]}</span>
@@ -721,6 +811,19 @@ function renderForecastTable() {
       `;
     })
     .join("");
+}
+
+function renderTemperatureInput(index, day) {
+  return `
+    <div class="forecast-control temperature-control">
+      <div class="temperature-range" aria-label="${text().lowLabel} ${formatDisplayTemperature(day.temperatureMinC)}, ${text().highLabel} ${formatDisplayTemperature(day.temperatureMaxC)}">
+        <span>${text().lowLabel} ${formatDisplayTemperature(day.temperatureMinC)}</span>
+        <span>${text().highLabel} ${formatDisplayTemperature(day.temperatureMaxC)}</span>
+      </div>
+      <label for="temperature-${index}">${averageTemperatureLabel()}</label>
+      <input id="temperature-${index}" type="text" inputmode="decimal" aria-label="${averageTemperatureLabel()}" value="${formatInputNumber(displayedTemperature(day.temperatureC))}" data-index="${index}" data-field="temperature">
+    </div>
+  `;
 }
 
 function renderNumberInput(index, key, label, value, min, max) {
@@ -805,8 +908,8 @@ function temperatureCoefficientForDisplay(valuePerC) {
 function renderFormula() {
   const tempTerm =
     state.temperatureUnit === "f"
-      ? "beta_temp * (temp_F - 68°F)"
-      : "beta_temp * (temp_C - 20°C)";
+      ? "beta_temp * (avg_temp_F - 68°F)"
+      : "beta_temp * (avg_temp_C - 20°C)";
   elements.modelFormula.textContent = `Y_metric(day, campaign) = beta_0 + beta_campaign + ${tempTerm} + beta_rain * rain% + beta_wind * wind_mph`;
 }
 

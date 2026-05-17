@@ -9,7 +9,7 @@
       content="A weather-aware campaign planning web demo for bubble tea and beverage operators, with live forecast inputs and explainable P-ROAS/CAC ranking."
     >
     <link rel="preload" as="image" href="assets/hero-bubble-tea-storefront.jpg">
-    <link rel="stylesheet" href="styles.css?v=20260517-owner1">
+    <link rel="stylesheet" href="styles.css?v=20260517-weather2">
   </head>
   <body>
     <div class="page-shell">
@@ -193,7 +193,7 @@
               <ol class="pipeline-list">
                 <li>
                   <strong data-i18n="pipelineWeatherTitle">Weather forecast</strong>
-                  <span data-i18n="pipelineWeatherText">Browser location plus Open-Meteo 7-day forecast.</span>
+                  <span data-i18n="pipelineWeatherText">Browser location, BigDataCloud city lookup, and Open-Meteo 7-day forecast.</span>
                 </li>
                 <li>
                   <strong data-i18n="pipelineBusinessTitle">Business outcomes</strong>
@@ -264,7 +264,7 @@
           <div class="model-bucket-grid">
             <div class="formula-box">
               <span data-i18n="formulaLabel">Scoring model</span>
-              <code id="model-formula">Y_metric(day, campaign) = beta_0 + beta_campaign + beta_temp * (temp_F - 68°F) + beta_rain * rain% + beta_wind * wind_mph</code>
+              <code id="model-formula">Y_metric(day, campaign) = beta_0 + beta_campaign + beta_temp * (avg_temp_F - 68°F) + beta_rain * rain% + beta_wind * wind_mph</code>
             </div>
 
             <div class="coeff-section">
@@ -318,6 +318,6 @@
       </main>
     </div>
 
-    <script src="app.js?v=20260517-owner1"></script>
+    <script src="app.js?v=20260517-weather2"></script>
   </body>
 </html>

@@ -508,10 +508,10 @@ html[lang="zh-Hans"] .hero-copy h2 {
 
 .forecast-row {
   display: grid;
-  grid-template-columns: 74px repeat(3, minmax(76px, 1fr)) 74px;
+  grid-template-columns: 74px minmax(164px, 1.4fr) repeat(2, minmax(76px, 1fr)) 74px;
   align-items: center;
   gap: 8px;
-  min-height: 56px;
+  min-height: 70px;
   padding: 8px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -546,6 +546,30 @@ html[lang="zh-Hans"] .hero-copy h2 {
 .forecast-control {
   display: grid;
   gap: 3px;
+}
+
+.temperature-control {
+  gap: 5px;
+}
+
+.temperature-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.temperature-range span {
+  display: inline-flex;
+  min-height: 23px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0 7px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 860;
+  line-height: 1;
 }
 
 .forecast-control label {
