@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Campaign Advisor | Weather-Aware Marketing Console</title>
+    <title>Campaign Advisor | Weather-Aware Campaign Planning</title>
     <meta
       name="description"
-      content="Interactive weather-aware marketing campaign ranking console using campaign coefficients and continuous weather variables."
+      content="A weather-aware campaign planning web demo for bubble tea and beverage operators, with live forecast inputs and explainable P-ROAS/CAC ranking."
     >
-    <link rel="preload" as="image" href="assets/hero-weather-intelligence.png">
+    <link rel="preload" as="image" href="assets/hero-bubble-tea-storefront.jpg">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -17,7 +17,7 @@
         <div class="brand-lockup">
           <img src="assets/app-icon.png" alt="Campaign Advisor app icon">
           <div>
-            <p class="eyebrow" data-i18n="brandEyebrow">Local commerce growth console</p>
+            <p class="eyebrow" data-i18n="brandEyebrow">Bubble tea campaign planning</p>
             <h1>Campaign Advisor</h1>
           </div>
         </div>
@@ -38,57 +38,57 @@
       <main class="experience-flow">
         <section class="hero-section" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow" data-i18n="heroEyebrow">Weather-aware growth intelligence</p>
-            <h2 id="hero-title" data-i18n="heroTitle">Rank the next best campaign from live local weather.</h2>
+            <p class="eyebrow" data-i18n="heroEyebrow">Weather-aware campaign planning</p>
+            <h2 id="hero-title" data-i18n="heroTitle">Turn local weather into tomorrow's campaign plan.</h2>
             <p data-i18n="heroText">
-              A lightweight operator console for local-commerce teams: forecast the week, choose the business target, and review the top 2 campaign options without turning the model into a black box.
+              For bubble tea and beverage chains, Campaign Advisor turns 7-day weather, campaign history, and your P-ROAS/CAC target into a human-approved top 2 plan.
             </p>
             <div class="hero-actions" aria-label="Primary actions">
-              <a class="button-link primary-link" href="#console" data-i18n="heroPrimaryCta">Try the live demo</a>
-              <a class="button-link secondary-link" href="#method" data-i18n="heroSecondaryCta">See why it works</a>
+              <a class="button-link primary-link" href="#console" data-i18n="heroPrimaryCta">Open the demo</a>
+              <a class="button-link secondary-link" href="#method" data-i18n="heroSecondaryCta">View the logic</a>
             </div>
           </div>
           <div class="hero-rail" aria-label="Product signals">
-            <span data-i18n="heroSignalForecast">Live forecast</span>
-            <span data-i18n="heroSignalContinuous">Continuous variables</span>
-            <span data-i18n="heroSignalRanking">Top 2 ranking</span>
+            <span data-i18n="heroSignalForecast">7-day local forecast</span>
+            <span data-i18n="heroSignalContinuous">Continuous weather effects</span>
+            <span data-i18n="heroSignalRanking">Operator-approved top 2</span>
           </div>
         </section>
 
         <section class="story-section scroll-section" aria-labelledby="story-title">
           <div class="section-intro">
-            <p class="eyebrow" data-i18n="storyEyebrow">Built for local tea operators</p>
-            <h2 id="story-title" data-i18n="storyTitle">Weather changes the moment customers decide to leave home.</h2>
+            <p class="eyebrow" data-i18n="storyEyebrow">Where it gets used</p>
+            <h2 id="story-title" data-i18n="storyTitle">The use case is simple: weather changes when people buy drinks.</h2>
             <p data-i18n="storyIntro">
-              The product should feel useful before the operator touches a model. These are the decisions a bubble tea team actually makes each morning.
+              Each morning, a regional operator can decide whether to protect margin, push delivery, or spend harder on acquisition.
             </p>
           </div>
 
           <div class="story-grid" aria-label="Use cases">
             <article class="story-card">
-              <img src="assets/usecase-rainy-boba.png" alt="Rain outside a bubble tea storefront with campaign recommendation overlay">
+              <img src="assets/story-store-staff.jpg" alt="Bubble tea shop staff working behind the counter">
               <div>
-                <p class="eyebrow" data-i18n="storyRainEyebrow">Rainy weekday</p>
-                <h3 data-i18n="storyRainTitle">Turn foot-traffic risk into delivery demand.</h3>
-                <p data-i18n="storyRainText">When rain probability rises, the operator can shift budget from walk-in offers to delivery-first acquisition.</p>
+                <p class="eyebrow" data-i18n="storyRainEyebrow">Rain day</p>
+                <h3 data-i18n="storyRainTitle">Shift spend from walk-in offers to delivery acquisition.</h3>
+                <p data-i18n="storyRainText">When rain weakens walk-in intent, the plan can move budget toward delivery-first acquisition and retargeting.</p>
               </div>
             </article>
 
             <article class="story-card">
-              <img src="assets/usecase-hot-campus.png" alt="Hot campus day with mobile bubble tea order and recommendation overlay">
+              <img src="assets/story-summer-drinks.jpg" alt="Several colorful bubble teas on a cafe table">
               <div>
-                <p class="eyebrow" data-i18n="storyHeatEyebrow">Hot afternoon</p>
-                <h3 data-i18n="storyHeatTitle">Protect margin when demand is already high.</h3>
-                <p data-i18n="storyHeatText">Hot days may not need aggressive discounting, so the model can surface lighter incentives or CAC-aware choices.</p>
+                <p class="eyebrow" data-i18n="storyHeatEyebrow">Hot day</p>
+                <h3 data-i18n="storyHeatTitle">Use lighter incentives when demand is already high.</h3>
+                <p data-i18n="storyHeatText">On warm days, the product can recommend margin-aware offers instead of over-discounting natural demand.</p>
               </div>
             </article>
 
             <article class="story-card">
-              <img src="assets/usecase-windy-ops.png" alt="Store operators reviewing campaign recommendations during windy weather">
+              <img src="assets/story-barista-cup.jpg" alt="Barista preparing a bubble tea order in a cafe">
               <div>
-                <p class="eyebrow" data-i18n="storyOpsEyebrow">Store operations</p>
-                <h3 data-i18n="storyOpsTitle">Give managers two good options, not a black-box answer.</h3>
-                <p data-i18n="storyOpsText">The workflow ranks the top 2 so humans can still account for inventory, staffing, and local events.</p>
+                <p class="eyebrow" data-i18n="storyOpsEyebrow">Store reality</p>
+                <h3 data-i18n="storyOpsTitle">Show two options so teams can account for staffing and inventory.</h3>
+                <p data-i18n="storyOpsText">The system ranks the best two choices, then lets the operator apply local judgment before launch.</p>
               </div>
             </article>
           </div>
@@ -100,7 +100,7 @@
               <aside class="forecast-panel" aria-label="Live weather forecast">
                 <div class="panel-header">
                   <div>
-                    <p class="eyebrow" data-i18n="forecastEyebrow">01 Forecast source</p>
+                    <p class="eyebrow" data-i18n="forecastEyebrow">Local forecast</p>
                     <h2 id="forecast-title" data-i18n="forecastTitle">7-day weather</h2>
                   </div>
                   <button class="primary-button" id="use-location" type="button" data-i18n="useLocation">Use my location</button>
@@ -125,12 +125,12 @@
 
               <section class="decision-panel" aria-labelledby="decision-title">
                 <div class="section-heading">
-                  <p class="eyebrow" data-i18n="decisionEyebrow">Campaign decision</p>
-                  <h2 id="decision-title" data-i18n="decisionTitle">Choose the optimization target, then pick from the top 2.</h2>
+                  <p class="eyebrow" data-i18n="decisionEyebrow">Recommended plan</p>
+                  <h2 id="decision-title" data-i18n="decisionTitle">Pick the target. Use the ranked plan.</h2>
                 </div>
 
                 <div class="module-group">
-                  <p class="module-label" data-i18n="objectiveLabel">02 Business objective</p>
+                  <p class="module-label" data-i18n="objectiveLabel">Optimization target</p>
                   <div class="metric-toggle" role="group" aria-label="Optimization target">
                     <button class="metric-button is-active" type="button" data-metric="proas">
                       <span>P-ROAS</span>
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="module-group is-primary">
-                  <p class="module-label" data-i18n="outputLabel">03 Decision output</p>
+                  <p class="module-label" data-i18n="outputLabel">Recommended output</p>
                   <div class="recommendation-block" aria-live="polite">
                     <p class="label" data-i18n="weeklyTopLabel">This week's top campaign</p>
                     <h3 id="weekly-campaign">New Customer Discount</h3>
@@ -180,8 +180,8 @@
 
         <section class="evidence-section scroll-section" id="method" aria-labelledby="method-title">
           <div class="section-intro">
-            <p class="eyebrow" data-i18n="methodEyebrow">Logic source</p>
-            <h2 id="method-title" data-i18n="methodTitle">A credible path from weather data to marketing action.</h2>
+            <p class="eyebrow" data-i18n="methodEyebrow">Why it is credible</p>
+            <h2 id="method-title" data-i18n="methodTitle">The logic is simple enough to explain and specific enough to operate.</h2>
             <p data-i18n="methodIntro">
               The demo uses transparent sample coefficients. In production, the same interface would learn from store-day campaign history, ad spend, POS orders, and local weather.
             </p>
@@ -205,15 +205,15 @@
                 </li>
                 <li>
                   <strong data-i18n="pipelineDecisionTitle">Operator decision</strong>
-                  <span data-i18n="pipelineDecisionText">Top 2 recommendation, metric toggle, and local override.</span>
+                  <span data-i18n="pipelineDecisionText">Top 2 recommendation, metric toggle, and human override.</span>
                 </li>
               </ol>
             </article>
 
             <article class="benchmark-panel">
               <div class="benchmark-heading">
-                <h3 data-i18n="benchmarkTitle">20-chain bubble tea benchmark universe</h3>
-                <p data-i18n="benchmarkText">A pilot can compare campaigns against a recognizable U.S. bubble tea landscape. Names below are a sample benchmark universe, not claimed partner data.</p>
+                <h3 data-i18n="benchmarkTitle">U.S. bubble tea benchmark sample</h3>
+                <p data-i18n="benchmarkText">A pilot can compare campaign logic against a recognizable U.S. bubble tea landscape. Names below are a sample competitive set, not partner or official performance data.</p>
               </div>
               <div class="chain-grid" aria-label="Bubble tea benchmark chains">
                 <span>Kung Fu Tea</span>
@@ -244,8 +244,8 @@
         <section class="wide-panel scroll-section" id="daily" aria-labelledby="daily-title">
           <div class="panel-header">
             <div>
-              <p class="eyebrow" data-i18n="dailyEyebrow">04 Daily drilldown</p>
-              <h2 id="daily-title" data-i18n="dailyTitle">Daily top 2 campaign ranking</h2>
+              <p class="eyebrow" data-i18n="dailyEyebrow">Daily plan</p>
+              <h2 id="daily-title" data-i18n="dailyTitle">Seven days of top 2 recommendations</h2>
             </div>
             <p class="hint" data-i18n="dailyHint">The weekly plan is the default. Daily ranking shows where weather shifts the expected value.</p>
           </div>
@@ -255,8 +255,8 @@
         <section class="model-panel scroll-section" id="model" aria-labelledby="model-title">
           <div class="panel-header">
             <div>
-              <p class="eyebrow" data-i18n="modelEyebrow">05 Model logic</p>
-              <h2 id="model-title" data-i18n="modelTitle">Model assumptions and campaign effects</h2>
+              <p class="eyebrow" data-i18n="modelEyebrow">Explainability</p>
+              <h2 id="model-title" data-i18n="modelTitle">Campaign and weather effects stay visible</h2>
             </div>
             <p class="hint" data-i18n="modelHint">One additive model scores every day x campaign pair before ranking the top 2.</p>
           </div>
@@ -288,9 +288,9 @@
         <section class="app-teaser scroll-section" id="app" aria-labelledby="app-title">
           <div class="app-copy">
             <p class="eyebrow" data-i18n="appEyebrow">Coming next</p>
-            <h2 id="app-title" data-i18n="appTitle">iOS companion app for richer store-day execution.</h2>
+            <h2 id="app-title" data-i18n="appTitle">Coming next: iOS store companion.</h2>
             <p data-i18n="appText">
-              The web console is for planning and interviews. The future iOS app can bring push alerts, store checklists, manager overrides, and campaign reminders into daily operations.
+              The web product is for planning and executive review. A future iOS companion can bring push alerts, store checklists, manager overrides, and campaign reminders into daily operations.
             </p>
           </div>
           <div class="app-card" aria-label="iOS app preview">
