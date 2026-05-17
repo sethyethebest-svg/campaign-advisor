@@ -130,8 +130,6 @@ const copy = {
     highDemandDays: "High demand days",
     decisionPreviewLabel: "Daily top campaign preview",
     decisionPreviewHint: "Top choice by selected target",
-    demandPrefix: "Demand",
-    demandSeparator: ":",
     dailyEyebrow: "Daily plan",
     dailyTitle: "Seven days of top 2 recommendations",
     dailyHint: "The weekly plan is the default. The daily view shows where weather changes the best campaign.",
@@ -304,8 +302,6 @@ const copy = {
     highDemandDays: "高需求天气天数",
     decisionPreviewLabel: "每日首选预览",
     decisionPreviewHint: "按当前目标排序的第一选择",
-    demandPrefix: "需求",
-    demandSeparator: "：",
     dailyEyebrow: "每日计划",
     dailyTitle: "未来 7 天 Top 2 投放建议",
     dailyHint: "默认看整周方案；每日视图用于观察天气变化如何改变最优选择。",
@@ -853,7 +849,7 @@ function renderForecastTable() {
 }
 
 function demandLabel(demand) {
-  return `${text().demandPrefix}${text().demandSeparator} ${text().demand[demand.key]}`;
+  return text().demand[demand.key];
 }
 
 function renderTemperatureInput(index, day) {
