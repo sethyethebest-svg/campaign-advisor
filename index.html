@@ -43,6 +43,10 @@
             <p data-i18n="heroText">
               A lightweight operator console for local-commerce teams: forecast the week, choose the business target, and review the top 2 campaign options without turning the model into a black box.
             </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button-link primary-link" href="#console" data-i18n="heroPrimaryCta">Try the live demo</a>
+              <a class="button-link secondary-link" href="#method" data-i18n="heroSecondaryCta">See why it works</a>
+            </div>
           </div>
           <div class="hero-rail" aria-label="Product signals">
             <span data-i18n="heroSignalForecast">Live forecast</span>
@@ -51,7 +55,46 @@
           </div>
         </section>
 
-        <section class="console-stage" aria-labelledby="forecast-title">
+        <section class="story-section scroll-section" aria-labelledby="story-title">
+          <div class="section-intro">
+            <p class="eyebrow" data-i18n="storyEyebrow">Built for local tea operators</p>
+            <h2 id="story-title" data-i18n="storyTitle">Weather changes the moment customers decide to leave home.</h2>
+            <p data-i18n="storyIntro">
+              The product should feel useful before the operator touches a model. These are the decisions a bubble tea team actually makes each morning.
+            </p>
+          </div>
+
+          <div class="story-grid" aria-label="Use cases">
+            <article class="story-card">
+              <img src="assets/usecase-rainy-boba.png" alt="Rain outside a bubble tea storefront with campaign recommendation overlay">
+              <div>
+                <p class="eyebrow" data-i18n="storyRainEyebrow">Rainy weekday</p>
+                <h3 data-i18n="storyRainTitle">Turn foot-traffic risk into delivery demand.</h3>
+                <p data-i18n="storyRainText">When rain probability rises, the operator can shift budget from walk-in offers to delivery-first acquisition.</p>
+              </div>
+            </article>
+
+            <article class="story-card">
+              <img src="assets/usecase-hot-campus.png" alt="Hot campus day with mobile bubble tea order and recommendation overlay">
+              <div>
+                <p class="eyebrow" data-i18n="storyHeatEyebrow">Hot afternoon</p>
+                <h3 data-i18n="storyHeatTitle">Protect margin when demand is already high.</h3>
+                <p data-i18n="storyHeatText">Hot days may not need aggressive discounting, so the model can surface lighter incentives or CAC-aware choices.</p>
+              </div>
+            </article>
+
+            <article class="story-card">
+              <img src="assets/usecase-windy-ops.png" alt="Store operators reviewing campaign recommendations during windy weather">
+              <div>
+                <p class="eyebrow" data-i18n="storyOpsEyebrow">Store operations</p>
+                <h3 data-i18n="storyOpsTitle">Give managers two good options, not a black-box answer.</h3>
+                <p data-i18n="storyOpsText">The workflow ranks the top 2 so humans can still account for inventory, staffing, and local events.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="console-stage" id="console" aria-labelledby="forecast-title">
           <div class="stage-shell">
             <div class="workspace-grid">
               <aside class="forecast-panel" aria-label="Live weather forecast">
@@ -135,6 +178,69 @@
           </div>
         </section>
 
+        <section class="evidence-section scroll-section" id="method" aria-labelledby="method-title">
+          <div class="section-intro">
+            <p class="eyebrow" data-i18n="methodEyebrow">Logic source</p>
+            <h2 id="method-title" data-i18n="methodTitle">A credible path from weather data to marketing action.</h2>
+            <p data-i18n="methodIntro">
+              The demo uses transparent sample coefficients. In production, the same interface would learn from store-day campaign history, ad spend, POS orders, and local weather.
+            </p>
+          </div>
+
+          <div class="proof-grid">
+            <article class="proof-panel">
+              <h3 data-i18n="pipelineTitle">Data pipeline</h3>
+              <ol class="pipeline-list">
+                <li>
+                  <strong data-i18n="pipelineWeatherTitle">Weather forecast</strong>
+                  <span data-i18n="pipelineWeatherText">Browser location plus Open-Meteo 7-day forecast.</span>
+                </li>
+                <li>
+                  <strong data-i18n="pipelineBusinessTitle">Business outcomes</strong>
+                  <span data-i18n="pipelineBusinessText">Store-day P-ROAS, CAC, orders, and campaign spend.</span>
+                </li>
+                <li>
+                  <strong data-i18n="pipelineModelTitle">Transparent model</strong>
+                  <span data-i18n="pipelineModelText">Additive regression with continuous temp, rain, and wind effects.</span>
+                </li>
+                <li>
+                  <strong data-i18n="pipelineDecisionTitle">Operator decision</strong>
+                  <span data-i18n="pipelineDecisionText">Top 2 recommendation, metric toggle, and local override.</span>
+                </li>
+              </ol>
+            </article>
+
+            <article class="benchmark-panel">
+              <div class="benchmark-heading">
+                <h3 data-i18n="benchmarkTitle">20-chain bubble tea benchmark universe</h3>
+                <p data-i18n="benchmarkText">A pilot can compare campaigns against a recognizable U.S. bubble tea landscape. Names below are a sample benchmark universe, not claimed partner data.</p>
+              </div>
+              <div class="chain-grid" aria-label="Bubble tea benchmark chains">
+                <span>Kung Fu Tea</span>
+                <span>Gong cha</span>
+                <span>Sharetea</span>
+                <span>Tiger Sugar</span>
+                <span>Boba Guys</span>
+                <span>Happy Lemon</span>
+                <span>CoCo Fresh Tea &amp; Juice</span>
+                <span>Yi Fang</span>
+                <span>T4</span>
+                <span>Quickly</span>
+                <span>It's Boba Time</span>
+                <span>Teaspoon</span>
+                <span>R&amp;B Tea</span>
+                <span>RareTea</span>
+                <span>Tan-Cha</span>
+                <span>OneZo</span>
+                <span>The Alley</span>
+                <span>Wushiland Boba</span>
+                <span>Presotea</span>
+                <span>Bober Tea</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section class="wide-panel scroll-section" id="daily" aria-labelledby="daily-title">
           <div class="panel-header">
             <div>
@@ -176,6 +282,31 @@
               </div>
               <div class="coeff-table" id="weather-coefficients"></div>
             </div>
+          </div>
+        </section>
+
+        <section class="app-teaser scroll-section" id="app" aria-labelledby="app-title">
+          <div class="app-copy">
+            <p class="eyebrow" data-i18n="appEyebrow">Coming next</p>
+            <h2 id="app-title" data-i18n="appTitle">iOS companion app for richer store-day execution.</h2>
+            <p data-i18n="appText">
+              The web console is for planning and interviews. The future iOS app can bring push alerts, store checklists, manager overrides, and campaign reminders into daily operations.
+            </p>
+          </div>
+          <div class="app-card" aria-label="iOS app preview">
+            <div class="phone-shell">
+              <div class="phone-screen">
+                <span data-i18n="appScreenLabel">Today</span>
+                <strong data-i18n="appScreenTitle">Rain risk rising</strong>
+                <p data-i18n="appScreenText">Switch to delivery acquisition before 2 PM.</p>
+                <div class="phone-bars">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <a class="button-link primary-link disabled-link" href="#app" aria-disabled="true" data-i18n="appCta">Download iOS app soon</a>
           </div>
         </section>
       </main>
