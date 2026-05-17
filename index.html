@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Campaign Advisor | Weather-Aware Marketing Console</title>
+    <meta
+      name="description"
+      content="Interactive weather-aware marketing campaign ranking console using campaign coefficients and continuous weather variables."
+    >
+    <link rel="preload" as="image" href="assets/hero-weather-intelligence.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar" aria-label="Product header">
+        <div class="brand-lockup">
+          <img src="assets/app-icon.png" alt="Campaign Advisor app icon">
+          <div>
+            <p class="eyebrow" data-i18n="brandEyebrow">Local commerce growth console</p>
+            <h1>Campaign Advisor</h1>
+          </div>
+        </div>
+
+        <div class="top-controls" aria-label="Display preferences">
+          <span class="utility-label" data-i18n="displayPrefs">Display</span>
+          <div class="segmented-control" aria-label="Language">
+            <button class="control-button is-active" type="button" data-language="en">EN</button>
+            <button class="control-button" type="button" data-language="zh">中文</button>
+          </div>
+          <div class="segmented-control" aria-label="Temperature unit">
+            <button class="control-button is-active" type="button" data-temperature-unit="f">°F</button>
+            <button class="control-button" type="button" data-temperature-unit="c">°C</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="experience-flow">
+        <section class="hero-section" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow" data-i18n="heroEyebrow">Weather-aware growth intelligence</p>
+            <h2 id="hero-title" data-i18n="heroTitle">Rank the next best campaign from live local weather.</h2>
+            <p data-i18n="heroText">
+              A lightweight operator console for local-commerce teams: forecast the week, choose the business target, and review the top 2 campaign options without turning the model into a black box.
+            </p>
+          </div>
+          <div class="hero-rail" aria-label="Product signals">
+            <span data-i18n="heroSignalForecast">Live forecast</span>
+            <span data-i18n="heroSignalContinuous">Continuous variables</span>
+            <span data-i18n="heroSignalRanking">Top 2 ranking</span>
+          </div>
+        </section>
+
+        <section class="console-stage" aria-labelledby="forecast-title">
+          <div class="stage-shell">
+            <div class="workspace-grid">
+              <aside class="forecast-panel" aria-label="Live weather forecast">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow" data-i18n="forecastEyebrow">01 Forecast source</p>
+                    <h2 id="forecast-title" data-i18n="forecastTitle">7-day weather</h2>
+                  </div>
+                  <button class="primary-button" id="use-location" type="button" data-i18n="useLocation">Use my location</button>
+                </div>
+
+                <div class="source-card">
+                  <span data-i18n="locationLabel">Location</span>
+                  <strong id="location-label">Demo market</strong>
+                  <small id="location-detail">Use live location for a real forecast.</small>
+                </div>
+
+                <div class="scenario-bar" aria-label="Load scenarios">
+                  <button type="button" data-scenario="demo">Demo</button>
+                  <button type="button" data-scenario="hot">Hot</button>
+                  <button type="button" data-scenario="rain">Rain</button>
+                  <button type="button" data-scenario="wind">Wind</button>
+                </div>
+
+                <p class="forecast-status" id="forecast-status" aria-live="polite">Demo forecast loaded. Use location for live weather.</p>
+                <div class="forecast-table" id="forecast-table"></div>
+              </aside>
+
+              <section class="decision-panel" aria-labelledby="decision-title">
+                <div class="section-heading">
+                  <p class="eyebrow" data-i18n="decisionEyebrow">Campaign decision</p>
+                  <h2 id="decision-title" data-i18n="decisionTitle">Choose the optimization target, then pick from the top 2.</h2>
+                </div>
+
+                <div class="module-group">
+                  <p class="module-label" data-i18n="objectiveLabel">02 Business objective</p>
+                  <div class="metric-toggle" role="group" aria-label="Optimization target">
+                    <button class="metric-button is-active" type="button" data-metric="proas">
+                      <span>P-ROAS</span>
+                      <small data-i18n="higherBetter">Higher is better</small>
+                    </button>
+                    <button class="metric-button" type="button" data-metric="cac">
+                      <span>CAC</span>
+                      <small data-i18n="lowerBetter">Lower is better</small>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="module-group is-primary">
+                  <p class="module-label" data-i18n="outputLabel">03 Decision output</p>
+                  <div class="recommendation-block" aria-live="polite">
+                    <p class="label" data-i18n="weeklyTopLabel">This week's top campaign</p>
+                    <h3 id="weekly-campaign">New Customer Discount</h3>
+                    <div class="value-row">
+                      <div>
+                        <span id="weekly-metric-label">Expected P-ROAS</span>
+                        <strong id="weekly-metric-value">7.4x</strong>
+                      </div>
+                      <div>
+                        <span data-i18n="runnerUp">Runner up</span>
+                        <strong id="weekly-runner-up">First-order discount</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="top-two-list" id="weekly-top-two" aria-label="Weekly top two campaigns"></div>
+
+                  <div class="insight-grid">
+                    <div>
+                      <span data-i18n="weatherEffect">Avg weather effect</span>
+                      <strong id="weather-effect">-0.1x</strong>
+                    </div>
+                    <div>
+                      <span data-i18n="highDemandDays">High demand days</span>
+                      <strong id="high-demand-days">0</strong>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="wide-panel scroll-section" id="daily" aria-labelledby="daily-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow" data-i18n="dailyEyebrow">04 Daily drilldown</p>
+              <h2 id="daily-title" data-i18n="dailyTitle">Daily top 2 campaign ranking</h2>
+            </div>
+            <p class="hint" data-i18n="dailyHint">The weekly plan is the default. Daily ranking shows where weather shifts the expected value.</p>
+          </div>
+          <div class="daily-grid" id="daily-grid"></div>
+        </section>
+
+        <section class="model-panel scroll-section" id="model" aria-labelledby="model-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow" data-i18n="modelEyebrow">05 Model logic</p>
+              <h2 id="model-title" data-i18n="modelTitle">Model assumptions and campaign effects</h2>
+            </div>
+            <p class="hint" data-i18n="modelHint">One additive model scores every day x campaign pair before ranking the top 2.</p>
+          </div>
+
+          <div class="model-bucket-grid">
+            <div class="formula-box">
+              <span data-i18n="formulaLabel">Scoring model</span>
+              <code id="model-formula">Y_metric(day, campaign) = beta_0 + beta_campaign + beta_temp * (temp_F - 68°F) + beta_rain * rain% + beta_wind * wind_mph</code>
+            </div>
+
+            <div class="coeff-section">
+              <div class="section-subhead">
+                <h3 data-i18n="campaignEffects">Campaign effects</h3>
+                <span>P-ROAS / CAC</span>
+              </div>
+              <div class="coeff-table" id="campaign-coefficients"></div>
+            </div>
+
+            <div class="coeff-section">
+              <div class="section-subhead">
+                <h3 data-i18n="weatherEffects">Weather effects</h3>
+                <span data-i18n="continuousInputs">Continuous inputs</span>
+              </div>
+              <div class="coeff-table" id="weather-coefficients"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
