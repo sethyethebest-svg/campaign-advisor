@@ -97,6 +97,13 @@ const copy = {
       "The system ranks the best two choices, then lets the operator apply local judgment before launch.",
     forecastEyebrow: "Local forecast",
     forecastTitle: "7-day weather",
+    forecastGuide:
+      "Low/high show the weather range. The model input is average temperature. Demand means weather-driven customer demand.",
+    dayColumn: "Day",
+    avgTempColumn: "Avg temp input",
+    rainColumn: "Rain",
+    windColumn: "Wind",
+    customerDemandColumn: "Customer demand",
     useLocation: "Use my location",
     loading: "Loading...",
     locationLabel: "Location",
@@ -112,6 +119,8 @@ const copy = {
     objectiveLabel: "Optimization target",
     higherBetter: "Higher is better",
     lowerBetter: "Lower is better",
+    proasDefinition: "P-ROAS = profit return on ad spend. Higher means each ad dollar creates more profit.",
+    cacDefinition: "CAC = customer acquisition cost. Lower means cheaper new-customer conversion.",
     outputLabel: "Recommended output",
     weeklyTopLabel: "This week's top campaign",
     expectedPROAS: "Expected P-ROAS",
@@ -119,6 +128,8 @@ const copy = {
     runnerUp: "Runner up",
     weatherEffect: "Avg weather effect",
     highDemandDays: "High demand days",
+    demandPrefix: "Demand",
+    demandSeparator: ":",
     dailyEyebrow: "Daily plan",
     dailyTitle: "Seven days of top 2 recommendations",
     dailyHint: "The weekly plan is the default. The daily view shows where weather changes the best campaign.",
@@ -258,6 +269,13 @@ const copy = {
       "系统负责排序，人负责最后判断，避免把门店运营交给一个黑盒答案。",
     forecastEyebrow: "本地天气",
     forecastTitle: "未来 7 天天气",
+    forecastGuide:
+      "最低/最高是天气范围；模型输入只使用平均温度。需求表示天气驱动的顾客需求强弱。",
+    dayColumn: "日期",
+    avgTempColumn: "平均温度输入",
+    rainColumn: "降雨",
+    windColumn: "风速",
+    customerDemandColumn: "顾客需求",
     useLocation: "使用当前位置",
     loading: "加载中...",
     locationLabel: "位置",
@@ -273,6 +291,8 @@ const copy = {
     objectiveLabel: "优化目标",
     higherBetter: "越高越好",
     lowerBetter: "越低越好",
+    proasDefinition: "P-ROAS = 利润广告回报率。越高说明每一元广告花费带来的利润越高。",
+    cacDefinition: "CAC = 获客成本。越低说明获得一个新客越便宜。",
     outputLabel: "推荐输出",
     weeklyTopLabel: "本周首选投放方案",
     expectedPROAS: "预期 P-ROAS",
@@ -280,6 +300,8 @@ const copy = {
     runnerUp: "第二选择",
     weatherEffect: "平均天气影响",
     highDemandDays: "高需求天气天数",
+    demandPrefix: "需求",
+    demandSeparator: "：",
     dailyEyebrow: "每日计划",
     dailyTitle: "未来 7 天 Top 2 投放建议",
     dailyHint: "默认看整周方案；每日视图用于观察天气变化如何改变最优选择。",
@@ -794,23 +816,39 @@ function formatDisplayTemperature(valueC) {
 }
 
 function renderForecastTable() {
-  elements.forecastTable.innerHTML = state.forecast
+  const header = `
+    <div class="forecast-header-row" aria-hidden="true">
+      <span>${text().dayColumn}</span>
+      <span>${text().avgTempColumn}</span>
+      <span>${text().rainColumn}</span>
+      <span>${text().windColumn}</span>
+      <span>${text().customerDemandColumn}</span>
+    </div>
+    <p class="forecast-guide">${text().forecastGuide}</p>
+  `;
+
+  const rows = state.forecast
     .map((day, index) => {
       const demand = demandSignal(day);
       return `
         <div class="forecast-row" data-day-index="${index}">
           <div class="day-chip">
-            <span class="weather-icon" aria-hidden="true">${demand.icon}</span>
             <span>${text().days[day.dayKey]}</span>
           </div>
           ${renderTemperatureInput(index, day)}
           ${renderNumberInput(index, "rain", text().rainLabel, day.rain, 0, 100)}
           ${renderNumberInput(index, "wind", text().windLabel, day.windMph, 0, 60)}
-          <span class="demand-badge ${demand.className}">${text().demand[demand.key]}</span>
+          <span class="demand-badge ${demand.className}">${demandLabel(demand)}</span>
         </div>
       `;
     })
     .join("");
+
+  elements.forecastTable.innerHTML = header + rows;
+}
+
+function demandLabel(demand) {
+  return `${text().demandPrefix}${text().demandSeparator} ${text().demand[demand.key]}`;
 }
 
 function renderTemperatureInput(index, day) {
@@ -881,7 +919,7 @@ function renderDailyRanking() {
         <article class="daily-card">
           <header>
             <h3>${text().days[day.dayKey]}</h3>
-            <span class="demand-badge ${demand.className}">${text().demand[demand.key]}</span>
+            <span class="demand-badge ${demand.className}">${demandLabel(demand)}</span>
           </header>
           <ol>
             ${ranked

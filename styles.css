@@ -506,9 +506,32 @@ html[lang="zh-Hans"] .hero-copy h2 {
   gap: 8px;
 }
 
+.forecast-header-row,
 .forecast-row {
   display: grid;
-  grid-template-columns: 74px minmax(164px, 1.4fr) repeat(2, minmax(76px, 1fr)) 74px;
+  grid-template-columns: 70px minmax(164px, 1.35fr) repeat(2, minmax(76px, 1fr)) minmax(116px, 0.68fr);
+}
+
+.forecast-header-row {
+  align-items: end;
+  gap: 8px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 880;
+  line-height: 1.2;
+}
+
+.forecast-guide {
+  margin: 0 0 2px;
+  color: var(--graphite);
+  font-size: 12px;
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+.forecast-row {
   align-items: center;
   gap: 8px;
   min-height: 70px;
@@ -523,24 +546,12 @@ html[lang="zh-Hans"] .hero-copy h2 {
 .day-chip {
   display: flex;
   align-items: center;
-  gap: 7px;
+  min-width: 0;
   font-weight: 900;
 }
 
 .day-chip span:last-child {
   white-space: nowrap;
-}
-
-.weather-icon {
-  display: inline-grid;
-  width: 28px;
-  height: 28px;
-  place-items: center;
-  border-radius: 8px;
-  background: var(--amber-soft);
-  color: var(--amber);
-  font-size: 15px;
-  font-weight: 900;
 }
 
 .forecast-control {
@@ -602,6 +613,7 @@ html[lang="zh-Hans"] .hero-copy h2 {
   border-radius: 8px;
   font-size: 12px;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .demand-high {
@@ -632,6 +644,32 @@ html[lang="zh-Hans"] .hero-copy h2 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+}
+
+.metric-explainers {
+  display: grid;
+  gap: 6px;
+}
+
+.metric-explainers p {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 10px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.metric-explainers strong {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 940;
+}
+
+.metric-explainers span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .metric-button {
@@ -1295,6 +1333,10 @@ html[lang="zh-Hans"] .hero-copy h2 {
   .forecast-row {
     grid-template-columns: 1fr;
     padding: 12px 0;
+  }
+
+  .forecast-header-row {
+    display: none;
   }
 
   .demand-badge {
